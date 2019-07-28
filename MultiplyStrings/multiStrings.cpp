@@ -19,11 +19,12 @@ public:
         max_length = num1.length() - 1;
         min_length = num2.length() - 1;
         string newNum = "";
-        int zero = 0;
-        for(int y = min_length ; y >= 0; y--, zero++){
-            for(int x = max_length; x >= 0; x--){
-                int total = multiTwo( int(num1.at(x)) - 48 , int(num2.at(y)) - 48 );
-                newNum = addStrings(total, zero, newNum);
+        int yzero = 0;
+        int xzero = 0;
+        for(int y = min_length ; y >= 0; y--, yzero++){
+            for(int x = max_length; x >= 0; x--, xzero++){
+                int newTotal = multiTwo( int(num1.at(x)) - 48 , int(num2.at(y)) - 48 );
+                newNum = addStrings(newTotal, xzero, newNum, yzero);
                 
             }
         }
@@ -35,14 +36,16 @@ public:
         return int(num1) * int(num2);    
     }
     
-    string addStrings(int twoNumTotal, int multiZero, string num1){
-        cout << "twoNumTotal = " << twoNumTotal << endl;
-        cout << "multiZero = " << multiZero << endl;
+    string addStrings(int newTotal, int xzero, string num1, int yzero){
+        cout << "newTotal = " << newTotal << endl;
+        cout << "xzero = " << xzero << endl;
         cout << "num1 = " << num1 << endl;
+        cout << "yzero = " << yzero << endl;
         string num2 = "";
-        num2.insert(num2.end(), multiZero, '0');
-        num2.insert(0, to_string(twoNumTotal));
-        
+        num2.insert(num2.end(), yzero, '0');
+        cout << "num2 = " << num2 << endl;
+        num2.insert(0, to_string(newTotal));
+        cout << "num2 = " << num2 << endl << endl;
         if(num2.length() > num1.length()){
             string temp = num1;
             num1 = num2;
